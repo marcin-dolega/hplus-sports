@@ -28,7 +28,7 @@
   
   <servlet>
   <servlet-name>HomeServlet</servlet-name>
-  <servlet-class>com.test.servlets.HomeServlet</servlet-class>
+  <servlet-class>pl.dolega.hplussports.servlets.HomeServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>

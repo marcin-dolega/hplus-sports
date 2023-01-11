@@ -2,19 +2,24 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
     <display-name>HPlusSample</display-name>
 
-<!--    <servlet>-->
-<!--        <servlet-name>GetServlet</servlet-name>-->
-<!--        <servlet-class>pl.dolega.hplussports.servlets.GetServlet</servlet-class>-->
-<!--        <init-param>-->
-<!--            <param-name>URL</param-name>-->
-<!--            <param-value>http://www.weatherservice.com</param-value>-->
-<!--        </init-param>-->
-<!--    </servlet>-->
+    <context-param>
+        <param-name>dbURL</param-name>
+        <param-value>jdbc:mysql://localhost:3306/hplus</param-value>
+    </context-param>
 
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>GetServlet</servlet-name>-->
-<!--        <url-pattern>/getServlet</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <servlet>
+        <servlet-name>GetServlet</servlet-name>
+        <servlet-class>pl.dolega.hplussports.servlets.GetServlet</servlet-class>
+        <init-param>
+            <param-name>URL</param-name>
+            <param-value>http://www.weatherservice.com</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/getServlet</url-pattern>
+    </servlet-mapping>
 
 <!--    <servlet>-->
 <!--        <servlet-name>HomeServlet</servlet-name>-->
