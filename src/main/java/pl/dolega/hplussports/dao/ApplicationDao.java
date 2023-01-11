@@ -3,7 +3,7 @@ package pl.dolega.hplussports.dao;
 import java.sql.*;
 
 import pl.dolega.hplussports.beans.Product;
-//import pl.dolega.hplussports.beans.User;
+import pl.dolega.hplussports.beans.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,29 +34,29 @@ public class ApplicationDao {
         return products;
     }
 
-//    public int registerUser(User user) {
-//        int rowsAffected = 0;
-//        try {
-//
-//            Connection connection = DBConnection.getConnectionToDatabase();
-//
-//            String insertQuery = "insert into users values(?,?,?,?,?,?)";
-//
-//            PreparedStatement statement = connection.prepareStatement(insertQuery);
-//            statement.setString(1, user.getUsername());
-//            statement.setString(2, user.getPassword());
-//            statement.setString(3, user.getFirstName());
-//            statement.setString(4, user.getLastName());
-//            statement.setString(5, user.getActivity());
-//            statement.setInt(6, user.getAge());
-//
-//            rowsAffected = statement.executeUpdate();
-//
-//            connection.close();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return rowsAffected;
-//    }
+    public int registerUser(User user) {
+        int rowsAffected = 0;
+        try {
+
+            Connection connection = DBConnection.getConnectionToDatabase();
+
+            String insertQuery = "insert into users values(?,?,?,?,?,?)";
+
+            PreparedStatement statement = connection.prepareStatement(insertQuery);
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getFirstName());
+            statement.setString(4, user.getLastName());
+            statement.setInt(5, user.getAge());
+            statement.setString(6, user.getActivity());
+
+            rowsAffected = statement.executeUpdate();
+
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowsAffected;
+    }
 }
