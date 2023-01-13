@@ -1,3 +1,7 @@
+<%@ page import="pl.dolega.hplussports.beans.Product" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Iterator" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,27 +52,24 @@
 				<span id="size">Items in Cart: {6}</span>
 			</p>
 		</div>
+
 		<div class="productContainer">
+			<%
+				List<Product> products = (ArrayList) request.getAttribute("products");
+				Iterator<Product> iterator = products.iterator();
+				while (iterator.hasNext()) {
+					Product product = iterator.next();
+			%>
 			<form method="get" action="addProducts">
-
 				<div class="productContainerItem">
-					<img id="pic1" src="{0}"> <input type="text" name="product"
-						value="{3}"><br />
-					<button>Add to Cart</button>
-				</div>
-
-
-				<div class="productContainerItem">
-					<img id="pic2" src="{1}"> <input type="text" name="product"
-						value="{4}"><br />
-					<button>Add to Cart</button>
-				</div>
-				<div class="productContainerItem">
-					<img id="pic3" src="{2}"> <input type="text" name="product"
-						value="{5}"><br />
+					<img id="pic1" src="<%=product.getProductImagePath()%>>"> <input type="text" name="product"
+													 value="<%=product.getProductName()%>"><br />
 					<button>Add to Cart</button>
 				</div>
 			</form>
+			<%
+				}
+			%>
 		</div>
 	</section>
 	<!-- #products -->

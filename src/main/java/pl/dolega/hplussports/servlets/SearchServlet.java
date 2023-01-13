@@ -20,14 +20,16 @@ public class SearchServlet extends HttpServlet {
         String searchString = request.getParameter("search");
         ApplicationDao dao = new ApplicationDao();
 
+        List<Product> products = null;
         try {
-            List<Product> products = dao.searchProducts(searchString);
-                String page = getHTMLString(request.getServletContext().getRealPath("/html/searchResults.html"), products);
-                response.getWriter().write(page);
+            products = dao.searchProducts(searchString);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
+//          String page = getHTMLString(request.getServletContext().getRealPath("/html/searchResults.jsp"), products);
+//          response.getWriter().write(page);
+        request.setAttribute("products", products);
+        request.getRequestDispatcher("/html/searchResult.jsp").forward(request, response);
 
     }
 
