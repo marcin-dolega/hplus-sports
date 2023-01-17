@@ -35,13 +35,11 @@
 		</nav>
 	</header>
 
-<%--	<fmt:setBundle basename="com.test.resources.applicationResources"--%>
-<%--		var="message" scope="session" />--%>
-
+	<fmt:setBundle basename="applicationResuorces" var="message" />
 	<section id="orders" class="section">
 		<c:if test="${requestScope.orders!=null}">
 		<div class="container">
-			<h2 class="headline">Orders</h2>
+			<h2 class="headline"><fmt:message bundle="${message}" key="label.header.orders"></fmt:message></h2>
 			<table id="orderHistory">
 
 				<tr>
@@ -50,9 +48,9 @@
 					<th>Order Date</th>
 					<th>Product Image</th>
 				</tr>
-				<c:forEach items="${requestScope.orders}" var="order" varStatus="Loop">
+				<c:forEach items="${requestScope.orders}" var="order" varStatus="loop">
 				<tr>
-					<td>${Loop.count}</td>
+					<td>${loop.count}</td>
 					<td>${order.productName}</td>
 					<td>${order.orderDate}</td>
 					<td><img width="200px" height="150px" src="${order.productImgPath}"></td>
