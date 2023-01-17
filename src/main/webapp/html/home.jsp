@@ -33,45 +33,34 @@
 			</div>
 			<!-- container nav-elements -->
 		</nav>
-		<!-- <div class="container tagline">
-    <h1 class="headline">Our Mission</h1>
-    <p>We support and encourage <em>active and healthy</em> lifestyles, by offering <em>ethically sourced</em> and <em>eco-friendly</em> nutritional products for the <em>performance-driven</em> athlete.</p>
-  </div>container tagline -->
 	</header>
 
-	<fmt:setBundle basename="com.test.resources.applicationResources"
-		var="message" scope="session" />
+<%--	<fmt:setBundle basename="com.test.resources.applicationResources"--%>
+<%--		var="message" scope="session" />--%>
 
 	<section id="orders" class="section">
+		<c:if test="${requestScope.orders!=null}">
 		<div class="container">
-			<c:if test="${requestScope.items!=null}">
-				<h2 class="headline">
-					<fmt:message key="label.home.orders" bundle="${message}"></fmt:message>
-				</h2>
-				<table id="orderHistory">
+			<h2 class="headline">Orders</h2>
+			<table id="orderHistory">
 
-					<tr>
-						<th><fmt:message key="label.home.table.header1"
-								bundle="${message}"></fmt:message></th>
-						<th>Product Name</th>
-						<th>Order Date</th>
-						<th>Product Image</th>
-
-					</tr>
-
-					<c:forEach items="${requestScope.items}" var="item">
-						<tr>
-
-							<td>${item.orderId}</td>
-							<td>${item.productName}</td>
-							<td>${item.orderDate}</td>
-							<td><img width="200px" height="150px"
-								src="${item.productImgPath}"></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</c:if>
+				<tr>
+					<th>Order No.</th>
+					<th>Product Name</th>
+					<th>Order Date</th>
+					<th>Product Image</th>
+				</tr>
+				<c:forEach items="${requestScope.orders}" var="order" varStatus="Loop">
+				<tr>
+					<td>${Loop.count}</td>
+					<td>${order.productName}</td>
+					<td>${order.orderDate}</td>
+					<td><img width="200px" height="150px" src="${order.productImgPath}"></td>
+				</tr>
+				</c:forEach>
+			</table>
 		</div>
+		</c:if>
 	</section>
 
 

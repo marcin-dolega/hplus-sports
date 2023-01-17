@@ -2,10 +2,12 @@ package pl.dolega.hplussports.dao;
 
 import java.sql.*;
 
+import pl.dolega.hplussports.beans.Order;
 import pl.dolega.hplussports.beans.Product;
 import pl.dolega.hplussports.beans.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ApplicationDao {
@@ -120,5 +122,37 @@ public class ApplicationDao {
 
         }
         return user;
+    }
+
+    public List<Order> getOrders(String username) {
+
+        Order order = null;
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            // get connection to database
+            Connection connection = DBConnection.getConnectionToDatabase();
+
+            // write select query to get order details
+            String sql = "select * from orders where user_name=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+
+            // execute query, get resultSet and return Orders info
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                order = new Order();
+                order.setOrderId(resultSet.getInt("order_id"));
+                order.setProductName(resultSet.getString("product_name"));
+                order.setProductImgPath(resultSet.getString("image_path"));
+                order.setOrderDate(new Date(resultSet.getDate("order_date").getTime()));
+                order.setUsername(resultSet.getString("user_name"));
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
     }
 }
