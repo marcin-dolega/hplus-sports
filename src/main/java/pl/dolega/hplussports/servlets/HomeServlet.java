@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet("/home")
+//@WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 
 	public Connection connection = null;
@@ -41,7 +41,7 @@ public class HomeServlet extends HttpServlet {
 		try {
 			connection.close();
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
 		}
 	}
 }

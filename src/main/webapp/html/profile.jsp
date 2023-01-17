@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<html lang="en">
+<%@page import="java.util.Calendar"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html >
+<html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>H+ Sport</title>
 <link rel="stylesheet" href="css/style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
 	<header id="home" class="header">
 		<nav class="nav" role="navigation">
 			<div class="container nav-elements">
@@ -17,14 +18,12 @@
 						alt="Logo - H Plus Sports"></a>
 				</div>
 				<!-- branding -->
-
 				<ul class="navbar">
 					<li><a href="home">home</a></li>
 					<li><a href="orderHistory">order history</a></li>
 					<!-- <li><a href="viewProfile">view my profile</a></li> -->
-					<li><a href='<%=response.encodeURL("getProfileDetails")%>'>
-						view my profile
-					</a></li>
+<%--					<li><a href='<%=response.encodeURL("getProfileDetails")%>'>view--%>
+					<li><a href=''>view my profile</a></li>
 					<li><a href='logout'>logout</a></li>
 					<li><a href="redirect">linkedIn</a></li>
 
@@ -39,40 +38,56 @@
   </div>container tagline -->
 	</header>
 
-	<fmt:setBundle basename="com.test.resources.applicationResources"
-		var="message" scope="session" />
-
-	<section id="orders" class="section">
+	<section id="profile" class="section">
 		<div class="container">
-			<c:if test="${requestScope.items!=null}">
-				<h2 class="headline">
-					<fmt:message key="label.home.orders" bundle="${message}"></fmt:message>
-				</h2>
-				<table id="orderHistory">
+			<h2 class="headline">My Profile</h2>
+			<table id="profile">
 
-					<tr>
-						<th><fmt:message key="label.home.table.header1"
-								bundle="${message}"></fmt:message></th>
-						<th>Product Name</th>
-						<th>Order Date</th>
-						<th>Product Image</th>
+				<tr>
+					<td>Username</td>
+					<td>${user.username}</td>
+				</tr>
+				<tr>
+					<td>First Name</td>
+					<td>${user.firstName}</td>
+				</tr>
+				<tr>
+					<td>Last Name</td>
+					<td>${user.lastName}</td>
+				</tr>
+				<tr>
+					<td>Age</td>
+					<td>${user.age}</td>
+				</tr>
+				<tr>
+					<td>Interested in</td>
+					<td>${user.activity}</td>
+				</tr>
 
-					</tr>
+			</table>
+		</div>
 
-					<c:forEach items="${requestScope.items}" var="item">
-						<tr>
+		<div class="container">
+		<h2 class="headline">Weight Summary</h2>
+			<table id="weightSummary">
 
-							<td>${item.orderId}</td>
-							<td>${item.productName}</td>
-							<td>${item.orderDate}</td>
-							<td><img width="200px" height="150px"
-								src="${item.productImgPath}"></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</c:if>
+				<tr>
+					<td>January</td>
+					<td>${requestScope.weightSummary["January"]}</td>
+				</tr>
+				<tr>
+					<td>February</td>
+					<td>${requestScope.weightSummary["February"]}</td>
+				</tr>
+				<tr>
+					<td>March</td>
+					<td>${requestScope.weightSummary["March"]}</td>
+				</tr>
+
+			</table>
 		</div>
 	</section>
+
 
 
 	<footer class="footer">
@@ -99,8 +114,6 @@
 		<!-- container -->
 	</footer>
 	<!-- footer -->
-
-
 
 
 </body>

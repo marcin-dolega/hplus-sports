@@ -4,7 +4,7 @@ public class Product {
 
     private int productId;
     private String productName;
-    private String productImagePath;
+    private String productImgPath;
 
     public int getId() {
         return productId;
@@ -22,11 +22,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getProductImagePath() {
-        return productImagePath;
+    public String getProductImgPath() {
+        return productImgPath;
     }
 
-    public void setProductImagePath(String productImagePath) {
-        this.productImagePath = productImagePath;
+    public void setProductImgPath(String productImgPath) {
+        this.productImgPath = productImgPath;
     }
 }
